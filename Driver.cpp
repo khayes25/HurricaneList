@@ -34,7 +34,10 @@ int main() {
 
     HurricaneList storms;
     storms.push_front(storm1);
+    storms.push_back(storm5);
+    cout << "a" << endl;
     storms.insert(storm2, 1);
+    
     storms.insert(storm3, 2);
     storms.insert(storm4, 3);
     storms.push_back(storm5);
@@ -51,6 +54,7 @@ int main() {
     storms.push_back(storm16);
     storms.push_back(storm17);
     storms.push_back(storm18);
+    cout << "something" << endl;
 
     storms.printForward();
     storms.printReverse();

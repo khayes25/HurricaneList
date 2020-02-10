@@ -15,7 +15,7 @@ using namespace std;
 struct Node {
     Storm s; //The value stored in the node
     Node *next; //Pointer to the next node in the list.
-    Node *previous //Pointer to the previous node in the list.
+    Node *previous; //Pointer to the previous node in the list.
 };
 
 /**
@@ -34,16 +34,16 @@ class HurricaneList {
         }
 
         //push_front method. Prepends this Storm object h to a new node at the head of the list
-        void push_front(Storm h) {
+        void push_back(Storm h) {
             Node *temp = new Node;     //Creates the new node to add
             temp->s = h;               //Assigns the parameter to the node's s field
             temp->next = NULL;         //Sets the next node to null (since it is at the end of the list)
+            
 
             if(head == NULL) {         //List is empty
                 temp->previous = NULL; //New node is the new head (already set next to null)
                 head = temp;           //Set the node as the head
                 tail = temp;           //Set the node as the tail
-                return;
             }
             else {
                 tail->next = temp;     //Sets the current tail node to point to this new node as being next
@@ -51,21 +51,23 @@ class HurricaneList {
                 tail = temp;           //Sets the list's tail pointer to point to the new node (the new tail)
             }
         }
+        
 
         //push_back method. Appends this Storm object h to a new node at the tail of the list
-        void push_back(Storm h) {
+        void push_front(Storm h) {
             Node *temp = new Node;     //Creates the new node to add
             temp->s = h;               //Assigns the parameter to the Node's data field
             temp->next = head;         //Sets the node's next pointer to the current head
             temp->previous = NULL;     //Sets the node's previous pointer to null, since it is the new head
+            
 
             if(head != NULL) {         //List is not empty
                 head->previous = temp; //Make current head's previous point to new node
             }
             head = temp;               //Change the list's head to be the new node
-            if(tail == NULL) {
-                tail = temp;           //If tail is null, then the list was empty. This node is both head and tail.
-            }
+            //if(tail == NULL) {
+            //    tail = temp;           //If tail is null, then the list was empty. This node is both head and tail.
+            //}
         }
 
         //insert method. Inserts this storm object h to a new node and places it at position i
@@ -80,11 +82,12 @@ class HurricaneList {
                 counter++;                           //Increments the counter
             }
 
+            if(false)
             if(temp == NULL || temp->next == NULL) {
                 push_back(h);                        //ALTERNATIVE TO RETURNING
             }
             else {
-                Node *newNode = new Node;            //Create new node
+                Node *newNode;            //Create new node
                 newNode->s = h;                      //Assigns the parameter to the node's data field
                 newNode->next = temp->next;          //Point the node's next field to point to where the current node's next field points
                 newNode->previous = temp;            //Point the node's previous field to where the current node
@@ -139,7 +142,7 @@ class HurricaneList {
             Node *tempPtr;                 //Temporary pointer
             tempPtr = head;                //Sets the temporary pointer to point to the head
             while(tempPtr != NULL) {
-                cout << tempPtr->s << " "; //Print the node's data
+                cout << tempPtr->s.toString() << " "; //Print the node's data
                 tempPtr = tempPtr->next;   //Get the temporary pointer to point to the next node in the list
             }
             cout << endl;
@@ -150,7 +153,7 @@ class HurricaneList {
             Node *tempPtr;                   //Temporary pointer
             tempPtr = tail;                  //Sets the temporary pointer to point to the tail
             while(tempPtr != NULL) {
-                cout << tempPtr->s << " ";   //Print the node's data
+                cout << tempPtr->s.toString() << " ";   //Print the node's data
                 tempPtr = tempPtr->previous; //Get the temporary pointer to point to the next node in the list
             }
             cout << endl;
