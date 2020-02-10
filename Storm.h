@@ -1,3 +1,7 @@
+/**
+ * Author: Keon Hayes
+ */
+
 #include <iostream>
 
 using namespace std;
@@ -7,4 +11,11 @@ struct Storm {
     int maxWind; //The maximum recorded windspeed of the storm
     string monthFormed; //The month in which the storm formed
     int category; //The storms category. 0 for tropical storms and 1-5 for hurricanes.
+
+    Storm(string nameIn, int maxWindIn, string monthFormedIn, int categoryIn) {
+        name = nameIn;
+        maxWind = maxWindIn;
+        monthFormed = monthFormedIn;
+        category = categoryIn;
+    }
 };
