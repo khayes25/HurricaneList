@@ -1,4 +1,6 @@
 /**
+ * Hurricane List
+ * 
  * Author: Keon Hayes
  */
 
@@ -52,7 +54,6 @@ class HurricaneList {
             }
         }
         
-
         //push_back method. Appends this Storm object h to a new node at the tail of the list
         void push_front(Storm h) {
             Node *temp = new Node;     //Creates the new node to add
@@ -65,9 +66,9 @@ class HurricaneList {
                 head->previous = temp; //Make current head's previous point to new node
             }
             head = temp;               //Change the list's head to be the new node
-            //if(tail == NULL) {
-            //    tail = temp;           //If tail is null, then the list was empty. This node is both head and tail.
-            //}
+            if(tail == NULL) {
+                tail = temp;           //If tail is null, then the list was empty. This node is both head and tail.
+            }
         }
 
         //insert method. Inserts this storm object h to a new node and places it at position i
@@ -82,12 +83,11 @@ class HurricaneList {
                 counter++;                           //Increments the counter
             }
 
-            if(false)
             if(temp == NULL || temp->next == NULL) {
-                push_back(h);                        //ALTERNATIVE TO RETURNING
+                return;
             }
             else {
-                Node *newNode;            //Create new node
+                Node *newNode = new Node;            //Create new node
                 newNode->s = h;                      //Assigns the parameter to the node's data field
                 newNode->next = temp->next;          //Point the node's next field to point to where the current node's next field points
                 newNode->previous = temp;            //Point the node's previous field to where the current node
@@ -139,22 +139,24 @@ class HurricaneList {
 
         //Prints information about each storm from head to tail
         void printForward() {
-            Node *tempPtr;                 //Temporary pointer
-            tempPtr = head;                //Sets the temporary pointer to point to the head
+            Node *tempPtr;                            //Temporary pointer
+            tempPtr = head;                           //Sets the temporary pointer to point to the head
             while(tempPtr != NULL) {
                 cout << tempPtr->s.toString() << " "; //Print the node's data
-                tempPtr = tempPtr->next;   //Get the temporary pointer to point to the next node in the list
+                tempPtr = tempPtr->next;              //Get the temporary pointer to point to the next node in the list
+                cout << endl;                         //Prints a line after each iteration
             }
             cout << endl;
         }
 
         //Prints information about each storm from tail to head
         void printReverse() {
-            Node *tempPtr;                   //Temporary pointer
-            tempPtr = tail;                  //Sets the temporary pointer to point to the tail
+            Node *tempPtr;                            //Temporary pointer
+            tempPtr = tail;                           //Sets the temporary pointer to point to the tail
             while(tempPtr != NULL) {
-                cout << tempPtr->s.toString() << " ";   //Print the node's data
-                tempPtr = tempPtr->previous; //Get the temporary pointer to point to the next node in the list
+                cout << tempPtr->s.toString() << " "; //Print the node's data
+                tempPtr = tempPtr->previous;          //Get the temporary pointer to point to the next node in the list
+                cout << endl;                         //Prints a line after each iteration
             }
             cout << endl;
         }
